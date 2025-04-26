@@ -1,8 +1,26 @@
 body{
-    display: flex;
+    height: 200vh;
+    width: 100%;
+    margin: 0;
+    background-color: antiquewhite;
 }
 .header{
-    background-color: #ce2b2b;
+    display: flex;
+    /*no bulletpoint*/
+    list-style: none;
+    position: fixed;
+    background-color: #ffffffa2;
     height: 100px;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.header li a{
+    text-decoration: none;
+    color: black;
+}
+.icon{
+    width: 50px;
+    height: 50px;
 }
