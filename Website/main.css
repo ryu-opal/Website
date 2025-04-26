@@ -1,0 +1,8 @@
+body{
+    display: flex;
+}
+.header{
+    background-color: #ce2b2b;
+    height: 100px;
+    width: 100%;
+}
