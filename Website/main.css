@@ -63,3 +63,20 @@ body{
     background-color: rgb(139, 139, 139);
 
 }
+.news-item{
+    background-color: aqua;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    display: flex;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 85x;
+}
+.news-item img{
+
+    max-height: 85px;
+    max-width: 20%;
+}
