@@ -36,7 +36,7 @@ body{
     position: absolute;
     height: 100vh;
     width: 100%;
-    background-image: url(pictures/banner-blog.jpg);
+    background-image: url(banner-blog.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
