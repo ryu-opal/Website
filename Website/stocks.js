@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
             container_id: "chart", // 指定圖表容器
             autosize: true,
             symbol: "BINANCE:BTCUSDT",
-            interval: "240",
-            timezone: "Etc/UTC",
+            interval: "D",
+            timezone: "America/Toronto",
             theme: "dark",
             style: "1",
             locale: "en",

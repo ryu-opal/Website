@@ -43,12 +43,33 @@ body{
     background-color: rgba(255, 255, 255, 0.509);
     z-index: 1;
 }
+.banner1{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-image: url(banner.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
 .banner h2{
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 75px;
+    height: 100vh;
+    color: rgb(255, 255, 255);   
+    text-shadow: 0 0 10px black;
+    background-color: rgba(54, 54, 54, 0.578);
+}
+.banner1 h2{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
     height: 100vh;
     color: rgb(255, 255, 255);   
     text-shadow: 0 0 10px black;
@@ -79,4 +100,11 @@ body{
 
     max-height: 85px;
     max-width: 20%;
+}
+#chart {
+    width: 100%;
+    height: 500px; /* 或根據需要調整 */
+}
+.stocks {
+    padding-top: 110vh;
 }
