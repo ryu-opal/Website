@@ -1,12 +1,15 @@
 const apiKey = '81ac4c8bb4ab483aa11da3032808a2b4'; // 替换为你的 API 密钥
-const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
-
+const url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&apiKey=${apiKey}`;
 fetch(url)
   .then(response => response.json())
   .then(data => {
     console.log(data.articles); // 输出新闻数据到控制台，便于调试
     const container = document.getElementById('news'); // 获取容器
-    data.articles.forEach(article => {
+    container.innerHTML = ''; // 清空容器，避免新闻累积
+    
+    // 确保只显示最多20条新闻
+    const newsToShow = data.articles.slice(0, 20);
+    newsToShow.forEach(article => {
       // 为每条新闻创建一个 div
       container.innerHTML += `
         <div class="news-item">
