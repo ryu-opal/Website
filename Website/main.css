@@ -1,114 +1,413 @@
-body{
-    height: 200vh;
-    width: 100%;
+/* General Styles */
+:root {
+    --background-color-light: #f4f7f6;
+    --text-color-light: #333;
+    --header-bg-light: rgba(255, 255, 255, 0.9);
+    --header-text-light: #333;
+    --header-hover-bg-light: #eee;
+    --header-hover-text-light: #007bff;
+    --card-bg-light: #fff;
+    --card-shadow-light: rgba(0, 0, 0, 0.08);
+    --news-border-light: #eee;
+    --news-title-light: #333;
+    --news-text-light: #666;
+    --footer-bg-light: #333;
+    --footer-text-light: #fff;
+    --button-bg-light: #eee;
+    --button-text-light: #333;
+    --button-hover-bg-light: #ddd;
+
+    --background-color-dark: #1a1a1a;
+    --text-color-dark: #f0f0f0;
+    --header-bg-dark: rgba(40, 40, 40, 0.9);
+    --header-text-dark: #f0f0f0;
+    --header-hover-bg-dark: #555;
+    --header-hover-text-dark: #61dafb;
+    --card-bg-dark: #2c2c2c;
+    --card-shadow-dark: rgba(255, 255, 255, 0.1);
+    --news-border-dark: #444;
+    --news-title-dark: #f0f0f0;
+    --news-text-dark: #bbb;
+    --footer-bg-dark: #222;
+    --footer-text-dark: #f0f0f0;
+    --button-bg-dark: #555;
+    --button-text-dark: #f0f0f0;
+    --button-hover-bg-dark: #777;
+}
+
+body {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
     margin: 0;
-    background-color: rgb(139, 139, 139);
+    background-color: #f4f7f6; /* Light gray background like freedidi */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.header{
+    color: #333;
+    line-height: 1.6;
     display: flex;
-    /*no bulletpoint*/
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full height */
+}
+
+/* Header Styles */
+.header {
+    display: flex;
     list-style: none;
-    position: fixed;
-    background-color: #ffffffa2;
-    height: 70px;
-    width: calc(100% - 200px);
-    margin-left: 100px;
-    margin-right: 100px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    z-index: 2;
-    margin-top: 7px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-}
-.header li a{
-    text-decoration: none;
-    color: black;
-
-}
-.icon{
-    width: 60px;
+    position: fixed; /* Keep header fixed at the top */
+    top: 10px; /* Add some space from the top */
+    left: 50%;
+    transform: translateX(-50%); /* Center the header */
+    background-color: var(--header-bg-light);
     height: 60px;
+    width: calc(100% - 40px); /* Responsive width */
+    max-width: 1200px; /* Max width for larger screens */
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Increased gap */
+    z-index: 1000; /* Ensure header is above other content */
+    border-radius: 30px; /* More rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    backdrop-filter: blur(10px);
+    padding: 0 20px; /* Add padding */
+    box-sizing: border-box;
 }
-.banner{
-    position: absolute;
-    height: 100vh;
+
+.header li a {
+    text-decoration: none;
+    color: var(--header-text-light);
+    font-weight: 500; /* Slightly bolder */
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header li a:hover {
+    background-color: var(--header-hover-bg-light);
+    color: var(--header-hover-text-light);
+}
+
+.icon {
+    width: 45px; /* Slightly smaller icon */
+    height: 45px;
+    margin-right: auto; /* Push icon to the left */
+}
+
+/* Banner Styles (Common) */
+.banner-base {
+    position: relative; /* Changed from fixed/absolute */
+    height: 60vh; /* Reduced height */
     width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex; /* Use flexbox for centering text */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 40px; /* Add space below banner */
+}
+
+.banner-base::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
+}
+
+.banner-base h2 {
+    margin: 0;
+    font-size: 3.5rem; /* Responsive font size */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    position: relative; /* Ensure text is above overlay */
+    z-index: 2;
+    padding: 0 20px; /* Add padding for smaller screens */
+}
+
+/* Specific Banner Backgrounds */
+.banner {
     background-image: url(banner-blog.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: rgba(255, 255, 255, 0.509);
-    z-index: 1;
 }
-.banner1{
-    position: absolute;
-    height: 100vh;
-    width: 100%;
+
+.banner1 {
     background-image: url(banner.png);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: 1;
 }
-.banner h2{
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 75px;
-    height: 100vh;
-    color: rgb(255, 255, 255);   
-    text-shadow: 0 0 10px black;
-    background-color: rgba(54, 54, 54, 0.578);
-}
-.banner1 h2{
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 100px;
-    height: 100vh;
-    color: rgb(255, 255, 255);   
-    text-shadow: 0 0 10px black;
-    background-color: rgba(54, 54, 54, 0.578);
-}
-.homepage-info{
-    height: 100vh;
+
+/* Main Content Layout */
+.content-wrapper {
+    padding-top: 80px; /* Add padding to prevent overlap with fixed header */
     width: 100%;
-    z-index: -1;
-    position: relative;
-    padding-top: 100vh;
-    background-color: rgb(139, 139, 139);
-
+    max-width: 1200px; /* Consistent max-width */
+    margin: 0 auto; /* Center content */
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    flex-grow: 1; /* Allow content to grow */
 }
-.news-item{
-    background-color: rgb(255, 255, 255);
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 10px;
+
+.main-content-row {
     display: flex;
-    margin-top: 10px;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    min-height: 85x;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-between; /* Space out columns */
+    gap: 30px; /* Gap between columns */
+    margin-top: 20px;
 }
-.news-item img{
 
-    max-height: 85px;
-    max-width: 20%;
+.main-left,
+.main-right {
+    flex: 1; /* Allow columns to grow */
+    min-width: 300px; /* Minimum width before wrapping */
 }
+
+/* Card Styles (Generic) */
+.card {
+    background-color: var(--card-bg-light);
+    box-shadow: 0 4px 15px var(--card-shadow-light);
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin-bottom: 30px;
+    overflow: hidden; /* Ensure content stays within bounds */
+}
+
+/* News Item Card Styles */
+.homepage-info {
+    /* Inherits .card styles */
+}
+
+.news-item {
+    background-color: transparent; /* Remove double background */
+    box-shadow: none; /* Remove double shadow */
+    padding: 15px 0; /* Adjust padding */
+    margin: 0; /* Remove margin */
+    display: flex;
+    align-items: center; /* Vertically align items */
+    border-bottom: 1px solid var(--news-border-light); /* Separator */
+}
+
+.news-item:last-child {
+    border-bottom: none; /* Remove border for last item */
+}
+
+.news-item img {
+    max-height: 60px;
+    max-width: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 15px;
+    flex-shrink: 0; /* Prevent image shrinking */
+}
+
+.news-content {
+    flex-grow: 1; /* Allow text content to take remaining space */
+}
+
+.news-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: var(--news-title-light);
+}
+
+.news-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--news-text-light);
+}
+
+/* Stocks/Widget Container Styles */
 .stocks {
-    padding-top: 101vh;
-    width: calc(100% - 20px);
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-top: 0; /* Remove old padding */
+    width: 100%;
+    margin: 0;
 }
 
-element.style {
-    width: 100%;
-    height: 100vh;
+.widget-container {
+    /* Inherits .card styles */
+    padding: 15px; /* Adjust padding for widgets */
 }
+
+/* Theme Toggle Button */
+#theme-toggle-button {
+    background-color: var(--button-bg-light);
+    color: var(--button-text-light);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle-button:hover {
+    background-color: var(--button-hover-bg-light);
+}
+
+/* Footer Styles (Optional - Add if needed) */
+.footer {
+    background-color: var(--footer-bg-light);
+    color: var(--footer-text-light);
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px; /* Space above footer */
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-theme .header {
+    background-color: var(--header-bg-dark);
+}
+
+body.dark-theme .header li a {
+    color: var(--header-text-dark);
+}
+
+body.dark-theme .header li a:hover {
+    background-color: var(--header-hover-bg-dark);
+    color: var(--header-hover-text-dark);
+}
+
+body.dark-theme .card {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 4px 15px var(--card-shadow-dark);
+}
+
+body.dark-theme .news-item {
+    border-bottom-color: var(--news-border-dark);
+}
+
+body.dark-theme .news-content h3 {
+    color: var(--news-title-dark);
+}
+
+body.dark-theme .news-content p {
+    color: var(--news-text-dark);
+}
+
+body.dark-theme .footer {
+    background-color: var(--footer-bg-dark);
+    color: var(--footer-text-dark);
+}
+
+body.dark-theme #theme-toggle-button {
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+}
+
+body.dark-theme #theme-toggle-button:hover {
+    background-color: var(--button-hover-bg-dark);
+}
+
+/* Adjust TradingView widget theme based on body class */
+body.dark-theme .tradingview-widget-container {
+    /* TradingView widgets might need specific JS adjustments for theme */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .header {
+        width: calc(100% - 30px);
+        gap: 15px;
+    }
+    .banner-base h2 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: 55px;
+        gap: 10px;
+        padding: 0 15px;
+        border-radius: 25px;
+    }
+    .header li a {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+    .icon {
+        width: 40px;
+        height: 40px;
+    }
+    .banner-base {
+        height: 50vh;
+    }
+    .banner-base h2 {
+        font-size: 2.2rem;
+    }
+    .content-wrapper {
+        padding-top: 70px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .main-content-row {
+        flex-direction: column;
+        gap: 0; /* Remove gap when stacked */
+    }
+    .main-left,
+    .main-right {
+        min-width: 100%; /* Full width when stacked */
+        margin-bottom: 20px; /* Add space between stacked cards */
+    }
+    .card {
+        padding: 15px;
+    }
+    .news-item img {
+        max-height: 50px;
+        max-width: 70px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        width: calc(100% - 20px);
+        top: 5px;
+    }
+    .banner-base h2 {
+        font-size: 1.8rem;
+    }
+    .news-item {
+        flex-direction: column; /* Stack image and text */
+        align-items: flex-start;
+    }
+    .news-item img {
+        margin-bottom: 10px; /* Space below image */
+        max-width: 100%; /* Allow image to be wider */
+        max-height: 150px; /* Limit height */
+    }
+}
+
+/* Remove old/conflicting styles */
+.homepage-info {
+    /* Resetting potentially conflicting old styles */
+    box-shadow: none; /* Use .card shadow */
+    border-radius: 0; /* Use .card radius */
+    padding: 0; /* Use .card padding */
+    margin: 0; /* Use .card margin */
+    z-index: auto;
+    position: static;
+    min-height: auto;
+    height: auto;
+    background-color: transparent; /* Use .card background */
+    max-width: none; /* Let .card control width */
+}
+
+/* Ensure TradingView widgets use light theme - CSS cannot directly control this, must be done in JS/HTML config */
+/* Add styles to make widget containers look good */
+.tradingview-widget-container {
+    width: 100%;
+    height: 400px; /* Default height, can be overridden */
+}
+
+/* Remove potentially unused style block */
+/* element.style { ... } */

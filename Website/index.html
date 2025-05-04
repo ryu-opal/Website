@@ -5,35 +5,52 @@
         <link rel="icon" href="/Website/icon.png">
         <link rel="stylesheet" href="/Website/main.css">
     </head>
-    <body class="body">
+    <body> <!-- Removed class="body" as it's styled directly -->
         <header class="header">
             <li><a href="index.html"><img src="/Website/icon.png" class="icon"></a></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="stocks.html">Stock</a></li>
+            <li><button id="theme-toggle-button">切换主题</button></li>
         </header>
-        <div class="banner">
+
+        <div class="banner-base banner"> <!-- Use common and specific banner classes -->
             <h2>HOME</h2>
         </div>
-        <div class="homepage-info" id="news">
 
+        <div class="content-wrapper">
+            <div class="main-content-row">
+                <div class="main-left card homepage-info" id="news">
+                    <!-- News items will be loaded here by news.js -->
+                    <!-- Added card class -->
+                </div>
+                <div class="main-right">
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="widget-container card"> <!-- Added card class -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                            {
+                            "feedMode": "all_symbols",
+                            "isTransparent": false,
+                            "displayMode": "adaptive",
+                            "width": "100%", /* Make width responsive */
+                            "height": 550,
+                            "colorTheme": "light", /* Changed to light theme */
+                            "locale": "en"
+                          }
+                            </script>
+                        </div>
+                    </div>
+                    <!-- TradingView Widget END -->
+                </div>
+            </div>
         </div>
+
         <script src="news.js"></script>
-        <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-    {
-    "feedMode": "all_symbols",
-    "isTransparent": false,
-    "displayMode": "adaptive",
-    "width": 400,
-    "height": 550,
-    "colorTheme": "dark",
-    "locale": "en"
-  }
-    </script>
-  </div>
-  <!-- TradingView Widget END -->
+        <script src="theme.js" defer></script>
+        <!-- Optional Footer -->
+        <!-- <footer class="footer">
+            <p>&copy; 2023 Your Website</p>
+        </footer> -->
     </body>
 </html>
