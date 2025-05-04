@@ -101,10 +101,14 @@ body{
     max-height: 85px;
     max-width: 20%;
 }
-#chart {
-    width: 100%;
-    height: 500px; /* 或根據需要調整 */
-}
 .stocks {
-    padding-top: 110vh;
+    padding-top: 101vh;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+element.style {
+    width: 100%;
+    height: 100vh;
 }

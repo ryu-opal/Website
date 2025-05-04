@@ -1,25 +1,211 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Stocks</title>
-        <link rel="icon" href="/Website/icon.png">
-        <link rel="stylesheet" href="/Website/main.css">
-    </head>
-    <body class="body">
-        <header class="header">
-            <li><a href="index.html"><img src="/Website/icon.png" class="icon"></a></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="stocks.html">Stock</a></li>
-        </header>
-        <div class="banner1">
-            <h2>Stocks</h2>
-        </div>
-        <div class="stocks">
-            <div id="chart"></div>
-            <div class="tradingview-chart">
-            </div>
-        </div>
-        <script src="https://s3.tradingview.com/tv.js"></script>
-        <script src="stocks.js"></script>
-    </body>    
+<head>
+    <title>Stocks</title>
+    <link rel="icon" href="/Website/icon.png">
+    <link rel="stylesheet" href="/Website/main.css">
+    <style>
+        #chart {
+            width: calc(100% - 20px);
+            height: 500px; /* 明確設置高度 */
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="body">
+    <header class="header">
+        <li><a href="index.html"><img src="/Website/icon.png" class="icon"></a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stocks.html">Stock</a></li>
+    </header>
+    <div class="banner1">
+        <h2>Stocks</h2>
+    </div>
+    <div class="stocks">
+        <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+    "symbols": [
+      {
+        "proName": "FOREXCOM:SPXUSD",
+        "title": "S&P 500 Index"
+      },
+      {
+        "proName": "FOREXCOM:NSXUSD",
+        "title": "US 100 Cash CFD"
+      },
+      {
+        "proName": "FX_IDC:EURUSD",
+        "title": "EUR to USD"
+      },
+      {
+        "proName": "BITSTAMP:BTCUSD",
+        "title": "Bitcoin"
+      },
+      {
+        "proName": "BITSTAMP:ETHUSD",
+        "title": "Ethereum"
+      }
+    ],
+    "showSymbolLogo": true,
+    "isTransparent": false,
+    "displayMode": "compact",
+    "colorTheme": "dark",
+    "locale": "en"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+    {
+    "width": "100%",
+    "height": "600",
+    "symbol": "NASDAQ:AAPL",
+    "interval": "D",
+    "timezone": "Etc/UTC",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "withdateranges": true,
+    "hide_side_toolbar": false,
+    "allow_symbol_change": true,
+    "support_host": "https://www.tradingview.com"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+   <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+    {
+    "width": 550,
+    "height": 550,
+    "symbolsGroups": [
+      {
+        "name": "Indices",
+        "originalName": "Indices",
+        "symbols": [
+          {
+            "name": "FOREXCOM:SPXUSD",
+            "displayName": "S&P 500 Index"
+          },
+          {
+            "name": "FOREXCOM:NSXUSD",
+            "displayName": "US 100 Cash CFD"
+          },
+          {
+            "name": "FOREXCOM:DJI",
+            "displayName": "Dow Jones Industrial Average Index"
+          },
+          {
+            "name": "INDEX:NKY",
+            "displayName": "Japan 225"
+          },
+          {
+            "name": "INDEX:DEU40",
+            "displayName": "DAX Index"
+          },
+          {
+            "name": "FOREXCOM:UKXGBP",
+            "displayName": "FTSE 100 Index"
+          }
+        ]
+      },
+      {
+        "name": "Forex",
+        "originalName": "Forex",
+        "symbols": [
+          {
+            "name": "FX:EURUSD",
+            "displayName": "EUR to USD"
+          },
+          {
+            "name": "FX:GBPUSD",
+            "displayName": "GBP to USD"
+          },
+          {
+            "name": "FX:USDJPY",
+            "displayName": "USD to JPY"
+          },
+          {
+            "name": "FX:USDCHF",
+            "displayName": "USD to CHF"
+          },
+          {
+            "name": "FX:AUDUSD",
+            "displayName": "AUD to USD"
+          },
+          {
+            "name": "FX:USDCAD",
+            "displayName": "USD to CAD"
+          }
+        ]
+      },
+      {
+        "name": "Futures",
+        "originalName": "Futures",
+        "symbols": [
+          {
+            "name": "BMFBOVESPA:ISP1!",
+            "displayName": "S&P 500 Index Futures"
+          },
+          {
+            "name": "BMFBOVESPA:EUR1!",
+            "displayName": "Euro Futures"
+          },
+          {
+            "name": "PYTH:WTI3!",
+            "displayName": "WTI CRUDE OIL"
+          },
+          {
+            "name": "BMFBOVESPA:ETH1!",
+            "displayName": "Hydrous ethanol"
+          },
+          {
+            "name": "BMFBOVESPA:CCM1!",
+            "displayName": "Corn"
+          }
+        ]
+      },
+      {
+        "name": "Bonds",
+        "originalName": "Bonds",
+        "symbols": [
+          {
+            "name": "EUREX:FGBL1!",
+            "displayName": "Euro Bund"
+          },
+          {
+            "name": "EUREX:FBTP1!",
+            "displayName": "Euro BTP"
+          },
+          {
+            "name": "EUREX:FGBM1!",
+            "displayName": "Euro BOBL"
+          }
+        ]
+      }
+    ],
+    "showSymbolLogo": true,
+    "isTransparent": false,
+    "colorTheme": "dark",
+    "locale": "en",
+    "backgroundColor": "rgba(0, 0, 0, 1)"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+    </div>
+</body>
 </html>
