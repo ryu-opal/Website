@@ -60,7 +60,7 @@ body {
     height: 60px;
     width: calc(100% - 40px); /* Responsive width */
     max-width: 1200px; /* Max width for larger screens */
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 20px; /* Increased gap */
     z-index: 1000; /* Ensure header is above other content */
@@ -88,7 +88,7 @@ body {
 .icon {
     width: 45px; /* Slightly smaller icon */
     height: 45px;
-    margin-right: auto; /* Push icon to the left */
+    margin-right: 0;
 }
 
 /* Banner Styles (Common) */
@@ -104,7 +104,7 @@ body {
     align-items: center;
     text-align: center;
     color: white;
-    margin-bottom: 40px; /* Add space below banner */
+    margin-bottom: 20px; /* Add space below banner */
 }
 
 .banner-base::before {
@@ -138,32 +138,27 @@ body {
 
 /* Main Content Layout */
 .content-wrapper {
-    padding-top: 80px; /* Add padding to prevent overlap with fixed header */
+
     width: 100%;
-    max-width: 1200px; /* Consistent max-width */
-    margin: 0 auto; /* Center content */
     padding-left: 20px;
     padding-right: 20px;
     box-sizing: border-box;
     flex-grow: 1; /* Allow content to grow */
 }
 
-.main-content-row {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    justify-content: space-between; /* Space out columns */
-    gap: 30px; /* Gap between columns */
-    margin-top: 20px;
-}
 
-.main-left,
+
 .main-right {
-    flex: 1; /* Allow columns to grow */
-    min-width: 300px; /* Minimum width before wrapping */
+    display: flex;
+    margin-left: 57%;
+
+
 }
 
 /* Card Styles (Generic) */
 .card {
+    height: 100%;
+    width: 100%;
     background-color: var(--card-bg-light);
     box-shadow: 0 4px 15px var(--card-shadow-light);
     background-color: #fff;
@@ -177,6 +172,7 @@ body {
 /* News Item Card Styles */
 .homepage-info {
     /* Inherits .card styles */
+    margin-right: 100px;
 }
 
 .news-item {
@@ -240,6 +236,7 @@ body {
     cursor: pointer;
     font-weight: 500;
     transition: background-color 0.3s ease;
+    margin-left: auto;
 }
 
 #theme-toggle-button:hover {
@@ -344,20 +341,9 @@ body.dark-theme .tradingview-widget-container {
     .banner-base h2 {
         font-size: 2.2rem;
     }
-    .content-wrapper {
-        padding-top: 70px;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    .main-content-row {
-        flex-direction: column;
-        gap: 0; /* Remove gap when stacked */
-    }
-    .main-left,
-    .main-right {
-        min-width: 100%; /* Full width when stacked */
-        margin-bottom: 20px; /* Add space between stacked cards */
-    }
+
+
+
     .card {
         padding: 15px;
     }
@@ -393,7 +379,8 @@ body.dark-theme .tradingview-widget-container {
     box-shadow: none; /* Use .card shadow */
     border-radius: 0; /* Use .card radius */
     padding: 0; /* Use .card padding */
-    margin: 0; /* Use .card margin */
+     /* Use .card margin */
+     margin-right: 100px;
     z-index: auto;
     position: static;
     min-height: auto;
@@ -402,12 +389,30 @@ body.dark-theme .tradingview-widget-container {
     max-width: none; /* Let .card control width */
 }
 
+
+
 /* Ensure TradingView widgets use light theme - CSS cannot directly control this, must be done in JS/HTML config */
 /* Add styles to make widget containers look good */
-.tradingview-widget-container {
-    width: 100%;
-    height: 400px; /* Default height, can be overridden */
-}
 
-/* Remove potentially unused style block */
-/* element.style { ... } */
+.stocks-32{
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 600px;
+
+}
+.card1 {
+    height: 700px;
+    width: 100%;
+    background-color: var(--card-bg-light);
+    box-shadow: 0 4px 15px var(--card-shadow-light);
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+
+}
+.tradingview-widget-container{
+    width: 100%;
+    height: 5cqmin;
+}
