@@ -16,7 +16,7 @@ fetch('blog.json')
                     <div class="blog-txt">
                         <h2>${post.title}</h2>
                         <p><strong>作者:</strong> ${post.author}</p>
-                        <p>${summary}</p>
+                        <p>${post.hook}</p>
                         <p><strong>日期:</strong> ${post.date}</p>
                     </div>
                 </a>
@@ -45,7 +45,7 @@ function filterblog() {
                     <div class="blog-txt">
                         <h2>${post.title}</h2>
                         <p><strong>作者:</strong> ${post.author}</p>
-                        <p>${summary}</p>
+                        <p>${post.hook}</p>
                         <p><strong>日期:</strong> ${post.date}</p>
                     </div>
                 </a>
@@ -64,14 +64,14 @@ function filterByCategory(category) {
         if (category === '全部' || post.catergory === category) {
             const postElement = document.createElement('div');
             postElement.className = 'blog-output';
-            const summary = post.content.substring(0, 20) + (post.content.length > 20 ? '...' : '');
+
             postElement.innerHTML = `
                 <a href="detail.html?id=${post.id}">
                     <img src="${post.cover}" alt="${post.title}的封面图">
                     <div class="blog-txt">
                         <h2>${post.title}</h2>
                         <p><strong>作者:</strong> ${post.author}</p>
-                        <p>${summary}</p>
+                        <p>${post.hook}</p>
                         <p><strong>日期:</strong> ${post.date}</p>
                     </div>
                 </a>
