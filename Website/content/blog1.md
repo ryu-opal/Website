@@ -8,3 +8,6 @@
 - 点3：探索 CSS
 
 > 编程是一段有趣的旅程！
+
+## 图片示例
+![示例图片](https://c4.wallpaperflare.com/wallpaper/159/601/90/wuthering-waves-shorekeeper-wuthering-waves-screen-shot-blue-hair-night-sky-hd-wallpaper-preview.jpg)
