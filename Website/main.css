@@ -60,7 +60,7 @@ body {
     height: 60px;
     width: calc(100% - 40px); /* Responsive width */
     max-width: 1200px; /* Max width for larger screens */
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 20px; /* Increased gap */
     z-index: 1000; /* Ensure header is above other content */
@@ -135,7 +135,9 @@ body {
 .banner1 {
     background-image: url(banner.png);
 }
-
+.banner2{
+    background-image: url(stock-banner.jpg);
+}
 /* Main Content Layout */
 .content-wrapper {
 
@@ -415,4 +417,34 @@ body.dark-theme .tradingview-widget-container {
 .tradingview-widget-container{
     width: 100%;
     height: 5cqmin;
+}
+.blog-output{
+    display: flex;
+    width: 350px;
+    height: 400px;
+    flex-direction: column;
+    background-color: #bbb;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+.blog-output img{
+    height: auto;
+    max-height: 50%;
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+.blog-txt{
+    margin-left: 10px;
+}
+.blog-left{
+    width: 70%;
+
+}
+#blog{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px , 1fr));
+    gap: 20px;
 }
