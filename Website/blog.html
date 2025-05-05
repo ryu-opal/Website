@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Page</title>
-    <title>Home page</title>
     <link rel="icon" href="/Website/icon.png">
     <link rel="stylesheet" href="/Website/main.css">
 </head>
@@ -26,7 +25,17 @@
                 </div>
             </div>
             <div class="blog-right">
-
+                <div class="blog-function">
+                    <div class="blog-search">
+                        <input type="text" id="searchInput" placeholder="Search...">
+                        <button id="searchButton" onclick="filterblog()">Search</button>
+                    </div>
+                    <div class="category-buttons">
+                        <button onclick="filterByCategory('全部')">全部</button>
+                        <button onclick="filterByCategory('学习')">学习</button>
+                        <button onclick="filterByCategory('test')">test</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

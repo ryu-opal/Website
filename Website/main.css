@@ -141,7 +141,7 @@ body {
 /* Main Content Layout */
 .content-wrapper {
 
-    width: 100%;
+    width: calc(100% - 40px);
     padding-left: 20px;
     padding-right: 20px;
     box-sizing: border-box;
@@ -426,10 +426,12 @@ body.dark-theme .tradingview-widget-container {
     background-color: #bbb;
     border-radius: 10px;
     margin-left: 10px;
+    cursor: pointer;
+    text-decoration: none;
 }
 .blog-output img{
-    height: auto;
-    max-height: 50%;
+    height: 45%;
+    max-height: 45%;
     width: 100%;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -438,7 +440,14 @@ body.dark-theme .tradingview-widget-container {
 }
 .blog-txt{
     margin-left: 10px;
+    color: black;
+    display: block;
 }
+.blog-txt h2,
+.blog-txt p{
+    text-decoration: none;
+}
+
 .blog-left{
     width: 70%;
 
@@ -447,4 +456,15 @@ body.dark-theme .tradingview-widget-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px , 1fr));
     gap: 20px;
+}
+.blog-container{
+    display: flex;
+    flex-direction: row;
+    
+}
+.blog-output a{
+    text-decoration: none;
+}
+.detail-cover{
+    border-radius: 10px;
 }
