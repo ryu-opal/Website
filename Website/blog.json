@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "我的第一篇博客",
+        "content": "这是博客内容，介绍我的学习经历...",
+        "date": "2025-05-05",
+        "author": "你的名字",
+        "catergory": "学习",
+        "cover": "blog-cover2.jpg"
+    },
+    {
+        "id": 2,
+        "title": "第二篇博客",
+        "content": "今天学了 JSON 和 HTML...",
+        "date": "2025-05-06",
+        "author": "你的名字",
+        "catergory": "学习",
+        "cover": "https://c4.wallpaperflare.com/wallpaper/159/601/90/wuthering-waves-shorekeeper-wuthering-waves-screen-shot-blue-hair-night-sky-hd-wallpaper-preview.jpg"
+    }
+]

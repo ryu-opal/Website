@@ -5,7 +5,7 @@ new TradingView.widget({
     symbol: "BINANCE:BTCUSDT",
     interval: "240",
     timezone: "Etc/UTC",
-    theme: "dark",
+    theme: "light", /* Changed to light theme */
     style: "1",
     locale: "en",
     toolbar_bg: "#f1f3f6",
