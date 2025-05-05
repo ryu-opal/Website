@@ -6,6 +6,7 @@
     <title>Blog Detail</title>
     <link rel="icon" href="/Website/icon.png">
     <link rel="stylesheet" href="/Website/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         .detail-container {
             max-width: 800px;
@@ -74,22 +75,28 @@
         // 获取 URL 参数
         const urlParams = new URLSearchParams(window.location.search);
         const postId = parseInt(urlParams.get('id'));
-        
+        const detailContainer = document.getElementById('detail');
         // 加载 blog.json
         fetch('blog.json')
             .then(response => response.json())
             .then(posts => {
                 const post = posts.find(p => p.id === postId);
                 if (post) {
-                    const detailContainer = document.getElementById('detail');
-                    detailContainer.innerHTML = `
-                        <a href="blog.html" class="back-button">返回</a>
-                        <h2>${post.title}</h2>
-                        <img src="${post.cover}" alt="${post.title}的封面图" class="detail-cover">
-                        <p>${post.content}</p>
-                        <p><strong>作者:</strong> ${post.author}</p>
-                        <p><strong>日期:</strong> ${post.date}</p>
-                    `;
+                    fetch(post.content)
+                        .then(res => res.text())
+                        .then(content => {
+                            // 使用 marked 渲染 Markdown
+                            const htmlContent = marked.parse(content);
+                            detailContainer.innerHTML = `
+                                <a href="blog.html" class="back-button">返回</a>
+                                <h2>${post.title}</h2>
+                                <img src="${post.cover}">
+                                <hr>
+                                <div class="content">${htmlContent}</div>
+                                <p><strong>作者:</strong> ${post.author}</p>
+                                <p><strong>日期:</strong> ${post.date}</p>
+                            `;
+                        });
                 } else {
                     document.getElementById('detail').innerHTML = '<p>文章未找到</p>';
                 }
