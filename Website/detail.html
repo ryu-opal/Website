@@ -72,6 +72,14 @@
         <h2>by kodi</h2>
     </footer>
     <script>
+
+                // 配置 marked 允许 HTML
+        marked.setOptions({
+            gfm: true,
+            breaks: true,
+            sanitize: false // 允许 HTML（如 video 和 iframe）
+        });
+
         // 获取 URL 参数
         const urlParams = new URLSearchParams(window.location.search);
         const postId = parseInt(urlParams.get('id'));
