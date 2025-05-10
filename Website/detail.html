@@ -7,6 +7,7 @@
     <link rel="icon" href="/Website/icon.png">
     <link rel="stylesheet" href="/Website/main.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@5.5.5/dist/framer-motion.umd.min.js"></script>
     <style>
         .detail-container {
             max-width: 800px;
@@ -110,6 +111,103 @@
                 }
             })
             .catch(error => console.error('加载 JSON 失败:', error));
+    </script>
+
+    <div class="transition-screen" id="transitionScreen">
+      <div class="transition-spinner"></div>
+    </div>
+
+    <script>
+        // 添加加载覆盖
+        const loadingOverlay = document.createElement('div');
+        loadingOverlay.style.position = 'fixed';
+        loadingOverlay.style.top = '0';
+        loadingOverlay.style.left = '0';
+        loadingOverlay.style.width = '100%';
+        loadingOverlay.style.height = '100%';
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        loadingOverlay.style.backgroundColor = isDarkMode ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
+        loadingOverlay.style.zIndex = '10000'; //确保在最上层
+        loadingOverlay.style.display = 'flex';
+        loadingOverlay.style.justifyContent = 'center';
+        loadingOverlay.style.alignItems = 'center';
+        const lineColor = isDarkMode ? '#ccc' : '#333';
+        loadingOverlay.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                <div class="line" style="width: 2px; height: 0%; background-color: ${lineColor};"></div>
+                <div class="line" style="width: 2px; height: 0%; background-color: ${lineColor};"></div>
+                <div class="line" style="width: 2px; height: 0%; background-color: ${lineColor};"></div>
+            </div>
+        `;
+        document.body.appendChild(loadingOverlay);
+
+        window.addEventListener('load', async () => {
+            const lines = loadingOverlay.querySelectorAll('.line');
+            if (window.motion) { // 确保 Framer Motion 已加载
+                try {
+                    await window.motion(lines[0], { height: "33%" }, { duration: 0.2, delay: 0.1, ease: "easeOut" }).then();
+                    await window.motion(lines[1], { height: "33%" }, { duration: 0.2, delay: 0.3, ease: "easeOut" }).then(); // Delay after first line
+                    await window.motion(lines[2], { height: "34%" }, { duration: 0.2, delay: 0.5, ease: "easeOut" }).then(); // Delay after second line
+                    
+                    await window.motion(
+                        loadingOverlay,
+                        { opacity: 0 }, 
+                        { duration: 0.5, ease: "easeInOut", delay: 0.2 } 
+                    ).then(() => {
+                        if (loadingOverlay.parentNode) {
+                            loadingOverlay.remove();
+                        }
+                    });
+                } catch (error) {
+                    console.error('Framer Motion animation failed:', error);
+                    loadingOverlay.style.transition = 'opacity 0.5s ease 0.3s';
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.remove();
+                    }, 800); 
+                }
+            } else {
+                lines[0].style.transition = `height 0.2s ease-out 0.1s`;
+                lines[0].style.height = '33%';
+                setTimeout(() => {
+                    lines[1].style.transition = `height 0.2s ease-out`;
+                    lines[1].style.height = '33%';
+                }, 300); 
+                setTimeout(() => {
+                    lines[2].style.transition = `height 0.2s ease-out`;
+                    lines[2].style.height = '34%';
+                }, 500); 
+                setTimeout(() => {
+                    loadingOverlay.style.transition = 'opacity 0.5s ease';
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.remove();
+                    }, 500);
+                }, 700); 
+            }
+        });
+    </script>
+
+    <script>
+      // 跳转动画逻辑
+      document.querySelectorAll('a[href$=".html"]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          const href = link.getAttribute('href');
+          if(href && !href.startsWith('#') && !link.hasAttribute('download')) {
+            e.preventDefault();
+            const screen = document.getElementById('transitionScreen');
+            screen.classList.add('active');
+            setTimeout(function(){
+              window.location.href = href;
+            }, 500);
+          }
+        });
+      });
+      // 页面加载后隐藏动画
+      window.addEventListener('pageshow', function(){
+        const screen = document.getElementById('transitionScreen');
+        if(screen) screen.classList.remove('active');
+      });
     </script>
 </body>
 </html>

@@ -46,6 +46,16 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Ensure body takes full height */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="8" fill="black"/></svg>'), auto !important;
+}
+
+/* Ensure circle cursor for interactive elements */
+a,
+button,
+input[type="button"],
+input[type="submit"],
+[role="button"] {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="8" fill="black"/></svg>'), auto !important;
 }
 
 /* Header Styles */
@@ -310,6 +320,133 @@ body.dark-theme #theme-toggle-button:hover {
 body.dark-theme .tradingview-widget-container {
     /* TradingView widgets might need specific JS adjustments for theme */
 }
+
+/* Blog Page Specific Styles */
+.blog-container {
+    display: flex;
+    gap: 20px; /* Space between left and right columns */
+    margin-top: 80px; /* Add margin to avoid overlap with fixed header */
+}
+
+.blog-left {
+    flex: 3; /* Takes 3 parts of the space */
+}
+
+.blog-right {
+    flex: 1; /* Takes 1 part of the space */
+    margin-left: 0; /* Reset margin from main-right */
+}
+
+.blog-post {
+    /* Styles for individual blog posts if needed */
+}
+
+.blog-function {
+    background-color: var(--card-bg-light);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--card-shadow-light);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+body.dark-theme .blog-function {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 4px 15px var(--card-shadow-dark);
+}
+
+.search-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color-light);
+    margin-bottom: 15px;
+    padding-left: 5px; /* Align with search bar */
+    border-left: 3px solid #ff69b4; /* Pink accent line like in image */
+}
+
+body.dark-theme .search-title {
+    color: var(--text-color-dark);
+}
+
+.blog-search {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0; /* Light grey background for the input area */
+    border-radius: 8px;
+    padding: 5px 10px;
+    border: 1px solid #e0e0e0; /* Light border */
+}
+
+body.dark-theme .blog-search {
+    background-color: #3a3a3a; /* Darker background for dark mode */
+    border-color: #555;
+}
+
+#searchInput {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 8px 5px;
+    font-size: 0.95rem;
+    background-color: transparent; /* Make input background transparent */
+    color: var(--text-color-light);
+}
+
+body.dark-theme #searchInput {
+    color: var(--text-color-dark);
+}
+
+#searchInput::placeholder {
+    color: #aaa; /* Placeholder text color */
+}
+
+body.dark-theme #searchInput::placeholder {
+    color: #888;
+}
+
+.search-icon {
+    fill: #888; /* Icon color */
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+body.dark-theme .search-icon {
+    fill: #bbb;
+}
+
+.category-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-buttons button {
+    background-color: var(--button-bg-light);
+    color: var(--button-text-light);
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.category-buttons button:hover {
+    background-color: var(--button-hover-bg-light);
+    border-color: #ccc;
+}
+
+body.dark-theme .category-buttons button {
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+    border-color: #555;
+}
+
+body.dark-theme .category-buttons button:hover {
+    background-color: var(--button-hover-bg-dark);
+    border-color: #777;
+}
+
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
