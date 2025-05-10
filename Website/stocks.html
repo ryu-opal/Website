@@ -4,154 +4,234 @@
     <title>Stocks</title>
     <link rel="icon" href="/Website/icon.png">
     <link rel="stylesheet" href="/Website/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@5.5.5/dist/framer-motion.umd.min.js"></script>
     <!-- Removed inline style block, handled by main.css -->
 </head>
 <body> <!-- Removed class="body" -->
+  <main>
     <header class="header">
-        <li><a href="index.html"><img src="/Website/icon.png" class="icon"></a></li>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="stocks.html">Stock</a></li>
-        <li><a href="blog.html">Blog</a></li>
-    </header>
+      <li><a href="index.html"><img src="/Website/icon.png" class="icon"></a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="stocks.html">Stock</a></li>
+      <li><a href="blog.html">Blog</a></li>
+  </header>
 
-    <div class="banner-base banner1"> <!-- Use common and specific banner classes -->
-        <h2>Stocks</h2>
-    </div>
+  <div class="banner-base banner1"> <!-- Use common and specific banner classes -->
+      <h2>Stocks</h2>
+  </div>
 
-    <div class="content-wrapper">
-        <div class="ticker-row">
-            <!-- TradingView Ticker Tape Widget BEGIN -->
-            <div class="widget-container card ticker-card">
-                <div class="tradingview-widget-container">
-                  <div class="tradingview-widget-container__widget"></div>
-                </div>
-            </div>
-            <!-- TradingView Ticker Tape Widget END -->
-        </div>
-        <div class="main-content-row stocks-main-row">
-            <div class="stocks-32" style="width: auto;">
-                <h3 class="panel-title">行情图</h3>
-                <!-- TradingView Advanced Chart Widget BEGIN -->
-                <div class="tradingview-widget-container" style="height: 600px; width: 100%;">
+  <div class="content-wrapper footer-bottom">
+      <div class="ticker-row">
+          <!-- TradingView Ticker Tape Widget BEGIN -->
+          <div class="widget-container card ticker-card">
+              <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
+              </div>
+          </div>
+          <!-- TradingView Ticker Tape Widget END -->
+      </div>
+      <div class="stocks-main-row">
+          <div class="stocks-32" style="width: auto;">
+              <h3 class="panel-title">Market Chart</h3>
+              <!-- TradingView Advanced Chart Widget BEGIN -->
+              <div class="tradingview-widget-container" style="height: 600px; width: 100%;">
+              <div class="tradingview-widget-container__widget"></div>
 
-                </div>
-                <!-- TradingView Advanced Chart Widget END -->
-            </div>
+              </div>
+              <!-- TradingView Advanced Chart Widget END -->
+          </div>
 
-        </div>
-    </div>
+      </div>
+  </div>
 
-    <!-- Optional Footer -->
-    <!-- <footer class="footer">
-        <p>&copy; 2023 Your Website</p>
-    </footer> -->
-    <script src="theme.js" defer></script>
-    <script>
-      function getCurrentTheme() {
-        return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-      }
-      function renderTradingViewWidgets() {
-        // 清除原有小部件
-        document.querySelectorAll('.tradingview-widget-container__widget').forEach(e => e.innerHTML = '');
-        // 重新插入 TradingView 小部件脚本
-        // Ticker Tape
-        let tickerScript = document.createElement('script');
-        tickerScript.type = 'text/javascript';
-        tickerScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
-        tickerScript.async = true;
-        tickerScript.innerHTML = JSON.stringify({
-          symbols: [
-            {proName: 'FOREXCOM:SPXUSD', title: 'S&P 500 Index'},
-            {proName: 'FOREXCOM:NSXUSD', title: 'US 100 Cash CFD'},
-            {proName: 'FX_IDC:EURUSD', title: 'EUR to USD'},
-            {proName: 'BITSTAMP:BTCUSD', title: 'Bitcoin'},
-            {proName: 'BITSTAMP:ETHUSD', title: 'Ethereum'}
-          ],
-          showSymbolLogo: true,
-          isTransparent: false,
-          displayMode: 'adaptive',
-          colorTheme: getCurrentTheme(),
-          locale: 'en'
-        });
-        document.querySelector('.widget-container .tradingview-widget-container').appendChild(tickerScript);
-        // Advanced Chart
-        let advScript = document.createElement('script');
-        advScript.type = 'text/javascript';
-        advScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
-        advScript.async = true;
-        advScript.innerHTML = JSON.stringify({
-          width: '100%',
-          height: '100%',
-          symbol: 'NASDAQ:AAPL',
-          interval: 'D',
-          timezone: 'Etc/UTC',
-          theme: getCurrentTheme(),
-          style: '1',
-          locale: 'en',
-          withdateranges: true,
-          hide_side_toolbar: false,
-          allow_symbol_change: true,
-          support_host: 'https://www.tradingview.com'
-        });
-        document.querySelectorAll('.tradingview-widget-container')[1].appendChild(advScript);
-        // Market Quotes
-        let quotesScript = document.createElement('script');
-        quotesScript.type = 'text/javascript';
-        quotesScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js';
-        quotesScript.async = true;
-        quotesScript.innerHTML = JSON.stringify({
-          width: '100%',
-          height: '100%',
-          symbolsGroups: [
-            {name: 'Indices', originalName: 'Indices', symbols: [
-              {name: 'FOREXCOM:SPXUSD', displayName: 'S&P 500 Index'},
-              {name: 'FOREXCOM:NSXUSD', displayName: 'US 100 Cash CFD'},
-              {name: 'FOREXCOM:DJI', displayName: 'Dow Jones Industrial Average Index'},
-              {name: 'INDEX:NKY', displayName: 'Japan 225'},
-              {name: 'INDEX:DEU40', displayName: 'DAX Index'},
-              {name: 'FOREXCOM:UKXGBP', displayName: 'FTSE 100 Index'}
-            ]},
-            {name: 'Forex', originalName: 'Forex', symbols: [
-              {name: 'FX:EURUSD', displayName: 'EUR to USD'},
-              {name: 'FX:GBPUSD', displayName: 'GBP to USD'},
-              {name: 'FX:USDJPY', displayName: 'USD to JPY'},
-              {name: 'FX:USDCHF', displayName: 'USD to CHF'},
-              {name: 'FX:AUDUSD', displayName: 'AUD to USD'},
-              {name: 'FX:USDCAD', displayName: 'USD to CAD'}
-            ]},
-            {name: 'Futures', originalName: 'Futures', symbols: [
-              {name: 'BMFBOVESPA:ISP1!', displayName: 'S&P 500 Index Futures'},
-              {name: 'BMFBOVESPA:EUR1!', displayName: 'Euro Futures'},
-              {name: 'PYTH:WTI3!', displayName: 'WTI CRUDE OIL'},
-              {name: 'BMFBOVESPA:ETH1!', displayName: 'Hydrous ethanol'},
-              {name: 'BMFBOVESPA:CCM1!', displayName: 'Corn'}
-            ]},
-            {name: 'Bonds', originalName: 'Bonds', symbols: [
-              {name: 'EUREX:FGBL1!', displayName: 'Euro Bund'},
-              {name: 'EUREX:FBTP1!', displayName: 'Euro BTP'},
-              {name: 'EUREX:FGBM1!', displayName: 'Euro BOBL'}
-            ]}
-          ],
-          showSymbolLogo: true,
-          isTransparent: false,
-          colorTheme: getCurrentTheme(),
-          locale: 'en',
-          backgroundColor: getCurrentTheme() === 'dark' ? '#1e222d' : '#ffffff'
-        });
-        document.querySelectorAll('.tradingview-widget-container')[2].appendChild(quotesScript);
-      }
-      // 初始渲染
-      window.addEventListener('DOMContentLoaded', renderTradingViewWidgets);
-      // 监听主题切换按钮
-      document.getElementById('theme-toggle-button').addEventListener('click', function() {
-        setTimeout(renderTradingViewWidgets, 300); // 等待主题切换动画完成
+  <!-- Optional Footer -->
+  <footer class="footer">
+    <h2></h2>By kodi</h2>
+  </footer>
+
+  <script src="theme.js" defer></script>
+  <script>
+    function getCurrentTheme() {
+      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    }
+    function renderTradingViewWidgets() {
+      // 清除原有小部件
+      document.querySelectorAll('.tradingview-widget-container__widget').forEach(e => e.innerHTML = '');
+      // 重新插入 TradingView 小部件脚本
+      // Ticker Tape
+      let tickerScript = document.createElement('script');
+      tickerScript.type = 'text/javascript';
+      tickerScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+      tickerScript.async = true;
+      tickerScript.innerHTML = JSON.stringify({
+        symbols: [
+          {proName: 'FOREXCOM:SPXUSD', title: 'S&P 500 Index'},
+          {proName: 'FOREXCOM:NSXUSD', title: 'US 100 Cash CFD'},
+          {proName: 'FX_IDC:EURUSD', title: 'EUR to USD'},
+          {proName: 'BITSTAMP:BTCUSD', title: 'Bitcoin'},
+          {proName: 'BITSTAMP:ETHUSD', title: 'Ethereum'}
+        ],
+        showSymbolLogo: true,
+        isTransparent: false,
+        displayMode: 'adaptive',
+        colorTheme: getCurrentTheme(),
+        locale: 'en'
       });
-    </script>
-    <div class="transition-screen" id="transitionScreen">
-      <div class="transition-spinner"></div>
-    </div>
+      document.querySelector('.widget-container .tradingview-widget-container').appendChild(tickerScript);
+      // Advanced Chart
+      let advScript = document.createElement('script');
+      advScript.type = 'text/javascript';
+      advScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+      advScript.async = true;
+      advScript.innerHTML = JSON.stringify({
+        width: '100%',
+        height: '100%',
+        symbol: 'NASDAQ:AAPL',
+        interval: 'D',
+        timezone: 'Etc/UTC',
+        theme: getCurrentTheme(),
+        style: '1',
+        locale: 'en',
+        withdateranges: true,
+        hide_side_toolbar: false,
+        allow_symbol_change: true,
+        support_host: 'https://www.tradingview.com'
+      });
+      document.querySelectorAll('.tradingview-widget-container')[1].appendChild(advScript);
+      // Market Quotes
+      let quotesScript = document.createElement('script');
+      quotesScript.type = 'text/javascript';
+      quotesScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js';
+      quotesScript.async = true;
+      quotesScript.innerHTML = JSON.stringify({
+        width: '100%',
+        height: '100%',
+        symbolsGroups: [
+          {name: 'Indices', originalName: 'Indices', symbols: [
+            {name: 'FOREXCOM:SPXUSD', displayName: 'S&P 500 Index'},
+            {name: 'FOREXCOM:NSXUSD', displayName: 'US 100 Cash CFD'},
+            {name: 'FOREXCOM:DJI', displayName: 'Dow Jones Industrial Average Index'},
+            {name: 'INDEX:NKY', displayName: 'Japan 225'},
+            {name: 'INDEX:DEU40', displayName: 'DAX Index'},
+            {name: 'FOREXCOM:UKXGBP', displayName: 'FTSE 100 Index'}
+          ]},
+          {name: 'Forex', originalName: 'Forex', symbols: [
+            {name: 'FX:EURUSD', displayName: 'EUR to USD'},
+            {name: 'FX:GBPUSD', displayName: 'GBP to USD'},
+            {name: 'FX:USDJPY', displayName: 'USD to JPY'},
+            {name: 'FX:USDCHF', displayName: 'USD to CHF'},
+            {name: 'FX:AUDUSD', displayName: 'AUD to USD'},
+            {name: 'FX:USDCAD', displayName: 'USD to CAD'}
+          ]},
+          {name: 'Futures', originalName: 'Futures', symbols: [
+            {name: 'BMFBOVESPA:ISP1!', displayName: 'S&P 500 Index Futures'},
+            {name: 'BMFBOVESPA:EUR1!', displayName: 'Euro Futures'},
+            {name: 'PYTH:WTI3!', displayName: 'WTI CRUDE OIL'},
+            {name: 'BMFBOVESPA:ETH1!', displayName: 'Hydrous ethanol'},
+            {name: 'BMFBOVESPA:CCM1!', displayName: 'Corn'}
+          ]},
+          {name: 'Bonds', originalName: 'Bonds', symbols: [
+            {name: 'EUREX:FGBL1!', displayName: 'Euro Bund'},
+            {name: 'EUREX:FBTP1!', displayName: 'Euro BTP'},
+            {name: 'EUREX:FGBM1!', displayName: 'Euro BOBL'}
+          ]}
+        ],
+        showSymbolLogo: true,
+        isTransparent: false,
+        colorTheme: getCurrentTheme(),
+        locale: 'en',
+        backgroundColor: getCurrentTheme() === 'dark' ? '#1e222d' : '#ffffff'
+      });
+      document.querySelectorAll('.tradingview-widget-container')[2].appendChild(quotesScript);
+    }
+    // 初始渲染
+    window.addEventListener('DOMContentLoaded', renderTradingViewWidgets);
+    // 监听主题切换按钮
+    document.getElementById('theme-toggle-button').addEventListener('click', function() {
+      setTimeout(renderTradingViewWidgets, 300); // 等待主题切换动画完成
+    });
+  </script>
+  <div class="transition-screen" id="transitionScreen">
+    <div class="transition-spinner"></div>
+  </div>
+
+  <script>
+      // 添加加载覆盖
+      const loadingOverlay = document.createElement('div');
+      loadingOverlay.style.position = 'fixed';
+      loadingOverlay.style.top = '0';
+      loadingOverlay.style.left = '0';
+      loadingOverlay.style.width = '100%';
+      loadingOverlay.style.height = '100%';
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      loadingOverlay.style.backgroundColor = isDarkMode ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
+      loadingOverlay.style.zIndex = '10000'; //确保在最上层
+      loadingOverlay.style.display = 'flex';
+      loadingOverlay.style.justifyContent = 'center';
+      loadingOverlay.style.alignItems = 'center';
+      const lineColor = isDarkMode ? '#ccc' : '#333';
+      loadingOverlay.innerHTML = `
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%;">
+              <div class="line" style="width: 2px; height: 0%; background-color: ${lineColor};"></div>
+              <div class="line" style="width: 2px; height: 0%; background-color: ${lineColor};"></div>
+              <div class="line" style="width: 2px; height: 0%; background-color: ${lineColor};"></div>
+          </div>
+      `;
+      document.body.appendChild(loadingOverlay);
+
+      window.addEventListener('load', async () => {
+          const lines = loadingOverlay.querySelectorAll('.line');
+          if (window.motion) { // 确保 Framer Motion 已加载
+              try {
+                  await window.motion(lines[0], { height: "33%" }, { duration: 0.2, delay: 0.1, ease: "easeOut" }).then();
+                  await window.motion(lines[1], { height: "33%" }, { duration: 0.2, delay: 0.3, ease: "easeOut" }).then(); // Delay after first line
+                  await window.motion(lines[2], { height: "34%" }, { duration: 0.2, delay: 0.5, ease: "easeOut" }).then(); // Delay after second line
+                  // Adjust total height to 100% if needed, e.g. by making the container of lines have a fixed height and then animate lines to fill it.
+                  
+                  await window.motion(
+                      loadingOverlay,
+                      { opacity: 0 }, // Animate to this state
+                      { duration: 0.5, ease: "easeInOut", delay: 0.2 } // Transition options - Adjusted delay
+                  ).then(() => {
+                      // Ensure removal happens after animation completes
+                      if (loadingOverlay.parentNode) {
+                          loadingOverlay.remove();
+                      }
+                  });
+              } catch (error) {
+                  console.error('Framer Motion animation failed:', error);
+                  // Fallback if Framer Motion animation fails
+                  loadingOverlay.style.transition = 'opacity 0.5s ease 0.3s';
+                  loadingOverlay.style.opacity = '0';
+                  setTimeout(() => {
+                      loadingOverlay.remove();
+                  }, 800); // 500ms for fade + 300ms delay
+              }
+          } else {
+              // Fallback if Framer Motion fails to load
+              lines[0].style.transition = `height 0.2s ease-out 0.1s`;
+              lines[0].style.height = '33%';
+              setTimeout(() => {
+                  lines[1].style.transition = `height 0.2s ease-out`;
+                  lines[1].style.height = '33%';
+              }, 300); // 200ms duration + 100ms delay
+              setTimeout(() => {
+                  lines[2].style.transition = `height 0.2s ease-out`;
+                  lines[2].style.height = '34%';
+              }, 500); // 300ms (from previous) + 200ms duration
+              setTimeout(() => {
+                  loadingOverlay.style.transition = 'opacity 0.5s ease';
+                  loadingOverlay.style.opacity = '0';
+                  setTimeout(() => {
+                      loadingOverlay.remove();
+                  }, 500);
+              }, 700); // Wait for line animations to roughly complete
+          }
+      });
+   </script>
+    </main>
 </body>
+
 </html>
 
 <script>
