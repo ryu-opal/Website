@@ -9,7 +9,7 @@ More details: the joy of programming.
 > Programming is an exciting journey!
 
 ## Image Example
-![Sample Image](https://c4.wallpaperflare.com/wallpaper/159/601/90/wuthering-waves-shorekeeper-wuthering-waves-screen-shot-blue-hair-night-sky-hd-wallpaper-preview.jpg)
+![Sample Image](icon.png)
 
 ---
 

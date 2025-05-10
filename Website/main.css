@@ -141,14 +141,14 @@ input[type="submit"],
 
 /* Specific Banner Backgrounds */
 .banner {
-    background-image: url(banner-blog.jpg);
+    background-image: url(banner-blog.webp);
 }
 
 .banner1 {
-    background-image: url(banner.png);
+    background-image: url(banner.webp);
 }
 .banner2{
-    background-image: url(stock-banner.jpg);
+    background-image: url(stock-banner.webp);
     background-blend-mode: overlay;
     background-color: rgba(0, 0, 0, 0.3);
 }
