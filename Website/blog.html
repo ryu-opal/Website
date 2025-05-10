@@ -23,6 +23,7 @@
             <div class="blog-left">
                 <div class="blog-post">
                     <div id="blog"></div>
+                    <div id="pagination" class="pagination"></div>
                 </div>
             </div>
             <div class="blog-right">
@@ -49,8 +50,55 @@
     <script src="script.js"></script>
 
     <script>
-        // 添加加载覆盖
-        const loadingOverlay = document.createElement('div');
+        // 分页逻辑
+        function paginateBlogCards() {
+            const blogContainer = document.getElementById('blog');
+            const cards = Array.from(blogContainer.children);
+            const pagination = document.getElementById('pagination');
+            if (!cards.length) return;
+            // 计算每页能容纳多少卡片（以200vh为基准）
+            const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            let pageSize = 0;
+            let tempHeight = 0;
+            for (let i = 0; i < cards.length; i++) {
+                tempHeight += cards[i].offsetHeight;
+                if (tempHeight > 2 * vh) {
+                    pageSize = i;
+                    break;
+                }
+            }
+            if (pageSize === 0) pageSize = cards.length; // 全部一页
+            const totalPages = Math.ceil(cards.length / pageSize);
+            let currentPage = 1;
+            function showPage(page) {
+                for (let i = 0; i < cards.length; i++) {
+                    cards[i].style.display = (i >= (page - 1) * pageSize && i < page * pageSize) ? '' : 'none';
+                }
+                pagination.innerHTML = '';
+                for (let p = 1; p <= totalPages; p++) {
+                    const btn = document.createElement('button');
+                    btn.textContent = p;
+                    btn.className = 'page-btn' + (p === page ? ' active' : '');
+                    btn.onclick = () => {
+                        currentPage = p;
+                        showPage(currentPage);
+                        window.scrollTo({top: blogContainer.offsetTop, behavior: 'smooth'});
+                    };
+                    pagination.appendChild(btn);
+                }
+            }
+            showPage(currentPage);
+        }
+        window.addEventListener('load', () => {
+            setTimeout(paginateBlogCards, 500); // 等待内容渲染
+        });
+        window.addEventListener('resize', () => {
+            paginateBlogCards();
+        });
+    </script>
+    <script>
+                // 添加加载覆盖
+                const loadingOverlay = document.createElement('div');
         loadingOverlay.style.position = 'fixed';
         loadingOverlay.style.top = '0';
         loadingOverlay.style.left = '0';

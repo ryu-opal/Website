@@ -99,3 +99,39 @@ document.addEventListener('DOMContentLoaded', () => {
 //     console.log('显示详情:', post);
 //     // window.location.href = `detail.html?id=${post.id}`;
 // }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 首页最新博客展示
+    const latestBlogContainer = document.getElementById('latest-blog');
+    if (latestBlogContainer) {
+        fetch('blog.json')
+            .then(response => {
+                if (!response.ok) throw new Error('加载 blog.json 失败');
+                return response.json();
+            })
+            .then(posts => {
+                if (!Array.isArray(posts) || posts.length === 0) {
+                    latestBlogContainer.innerHTML = '<p>暂无博客内容。</p>';
+                    return;
+                }
+                // 按 id 从大到小排序，取前5篇最新博客
+                const latestPosts = posts.sort((a, b) => b.id - a.id).slice(0, 5);
+                latestBlogContainer.innerHTML = latestPosts.map(latest => `
+                    <div class="blog-output">
+                        <a href="detail.html?id=${latest.id}">
+                            <img src="${latest.cover}" alt="${latest.title}的封面图">
+                            <div class="blog-txt">
+                                <h2>${latest.title}</h2>
+                                <p><strong>作者:</strong> ${latest.author}</p>
+                                <p>${latest.hook}</p>
+                                <p><strong>日期:</strong> ${latest.date}</p>
+                            </div>
+                        </a>
+                    </div>
+                `).join('');
+            })
+            .catch(() => {
+                latestBlogContainer.innerHTML = '<p>加载最新博客失败。</p>';
+            });
+    }
+});
