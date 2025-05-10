@@ -6,6 +6,7 @@
     <title>Blog Page</title>
     <link rel="icon" href="/Website/icon.png">
     <link rel="stylesheet" href="/Website/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@5.5.5/dist/framer-motion.umd.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -22,28 +23,152 @@
             <div class="blog-left">
                 <div class="blog-post">
                     <div id="blog"></div>
+                    <div id="pagination" class="pagination"></div>
                 </div>
             </div>
             <div class="blog-right">
                 <div class="blog-function">
+                    <h3 class="search-title">Search</h3>
                     <div class="blog-search">
-                        <input type="text" id="searchInput" placeholder="Search...">
-                        <button id="searchButton" onclick="filterblog()">Search</button>
+                        <input type="text" id="searchInput" placeholder="Start an exciting search">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                     </div>
                     <div class="category-buttons">
-                        <button onclick="filterByCategory('全部')">全部</button>
-                        <button onclick="filterByCategory('学习')">学习</button>
-                        <button onclick="filterByCategory('test')">test</button>
+                        <button onclick="filterByCategory('All')">All</button>
+                        <button onclick="filterByCategory('a')">a</button>
+                        <button onclick="filterByCategory('b')">b</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
     <footer class="footer">
-        <h2>by kodi</h2>
-    </footer>
+        <h2></h2>By kodi</h2>
+      </footer>
+
 
     <script src="script.js"></script>
+
+    <script>
+        // 分页逻辑
+        function paginateBlogCards() {
+            const blogContainer = document.getElementById('blog');
+            const cards = Array.from(blogContainer.children);
+            const pagination = document.getElementById('pagination');
+            if (!cards.length) return;
+            // 计算每页能容纳多少卡片（以200vh为基准）
+            const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            let pageSize = 0;
+            let tempHeight = 0;
+            for (let i = 0; i < cards.length; i++) {
+                tempHeight += cards[i].offsetHeight;
+                if (tempHeight > 2 * vh) {
+                    pageSize = i;
+                    break;
+                }
+            }
+            if (pageSize === 0) pageSize = cards.length; // 全部一页
+            const totalPages = Math.ceil(cards.length / pageSize);
+            let currentPage = 1;
+            function showPage(page) {
+                for (let i = 0; i < cards.length; i++) {
+                    cards[i].style.display = (i >= (page - 1) * pageSize && i < page * pageSize) ? '' : 'none';
+                }
+                pagination.innerHTML = '';
+                for (let p = 1; p <= totalPages; p++) {
+                    const btn = document.createElement('button');
+                    btn.textContent = p;
+                    btn.className = 'page-btn' + (p === page ? ' active' : '');
+                    btn.onclick = () => {
+                        currentPage = p;
+                        showPage(currentPage);
+                        window.scrollTo({top: blogContainer.offsetTop, behavior: 'smooth'});
+                    };
+                    pagination.appendChild(btn);
+                }
+            }
+            showPage(currentPage);
+        }
+        window.addEventListener('load', () => {
+            setTimeout(paginateBlogCards, 500); // 等待内容渲染
+        });
+        window.addEventListener('resize', () => {
+            paginateBlogCards();
+        });
+    </script>
+    <script>
+                // 添加加载覆盖
+                const loadingOverlay = document.createElement('div');
+        loadingOverlay.style.position = 'fixed';
+        loadingOverlay.style.top = '0';
+        loadingOverlay.style.left = '0';
+        loadingOverlay.style.width = '100%';
+        loadingOverlay.style.height = '100%';
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        loadingOverlay.style.backgroundColor = isDarkMode ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
+        loadingOverlay.style.zIndex = '10000'; //确保在最上层
+        loadingOverlay.style.display = 'flex';
+        loadingOverlay.style.justifyContent = 'center';
+        loadingOverlay.style.alignItems = 'center';
+        const lineColor = isDarkMode ? '#ccc' : '#333';
+        loadingOverlay.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                <div class="line" style="width: 2px; height: 0%; background-color: ${lineColor};"></div>
+                <div class="line" style="width: 2px; height: 0%; background-color: ${lineColor};"></div>
+                <div class="line" style="width: 2px; height: 0%; background-color: ${lineColor};"></div>
+            </div>
+        `;
+        document.body.appendChild(loadingOverlay);
+
+        window.addEventListener('load', async () => {
+            const lines = loadingOverlay.querySelectorAll('.line');
+            if (window.motion) { // 确保 Framer Motion 已加载
+                try {
+                    await window.motion(lines[0], { height: "33%" }, { duration: 0.2, delay: 0.1, ease: "easeOut" }).then();
+                    await window.motion(lines[1], { height: "33%" }, { duration: 0.2, delay: 0.3, ease: "easeOut" }).then(); // Delay after first line
+                    await window.motion(lines[2], { height: "34%" }, { duration: 0.2, delay: 0.5, ease: "easeOut" }).then(); // Delay after second line
+                    // Adjust total height to 100% if needed, e.g. by making the container of lines have a fixed height and then animate lines to fill it.
+                    
+                    await window.motion(
+                        loadingOverlay,
+                        { opacity: 0 }, // Animate to this state
+                        { duration: 0.5, ease: "easeInOut", delay: 0.2 } // Transition options - Adjusted delay
+                    ).then(() => {
+                        // Ensure removal happens after animation completes
+                        if (loadingOverlay.parentNode) {
+                            loadingOverlay.remove();
+                        }
+                    });
+                } catch (error) {
+                    console.error('Framer Motion animation failed:', error);
+                    // Fallback if Framer Motion animation fails
+                    loadingOverlay.style.transition = 'opacity 0.5s ease 0.3s';
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.remove();
+                    }, 800); // 500ms for fade + 300ms delay
+                }
+            } else {
+                // Fallback if Framer Motion fails to load
+                lines[0].style.transition = `height 0.2s ease-out 0.1s`;
+                lines[0].style.height = '33%';
+                setTimeout(() => {
+                    lines[1].style.transition = `height 0.2s ease-out`;
+                    lines[1].style.height = '33%';
+                }, 300); // 200ms duration + 100ms delay
+                setTimeout(() => {
+                    lines[2].style.transition = `height 0.2s ease-out`;
+                    lines[2].style.height = '34%';
+                }, 500); // 300ms (from previous) + 200ms duration
+                setTimeout(() => {
+                    loadingOverlay.style.transition = 'opacity 0.5s ease';
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.remove();
+                    }, 500);
+                }, 700); // Wait for line animations to roughly complete
+            }
+        });
+    </script>
 </body>
 </html>
