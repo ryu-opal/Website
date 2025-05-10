@@ -134,4 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 latestBlogContainer.innerHTML = '<p>加载最新博客失败。</p>';
             });
     }
+    window.addAnimationEffect = function() {
+        const elements = document.querySelectorAll('.animate');
+        elements.forEach(element => {
+            element.style.transition = 'transform 0.5s';
+            element.addEventListener('mouseover', () => {
+                element.style.transform = 'scale(1.1)';
+            });
+            element.addEventListener('mouseout', () => {
+                element.style.transform = 'scale(1)';
+            });
+        });
+    };
 });
