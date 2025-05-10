@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 分类过滤功能 (挂载到 window 对象使其可被 HTML中的 onclick 调用)
     window.filterByCategory = function(category) {
         const filteredPosts = allPosts.filter(post =>
-            category === '全部' || (post.catergory && post.catergory.toLowerCase() === category.toLowerCase()) // 确保比较时大小写一致
+            category === 'All' || (post.category && post.category.toLowerCase() === category.toLowerCase())
         );
         displayPosts(filteredPosts);
     }

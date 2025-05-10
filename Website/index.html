@@ -47,7 +47,7 @@
         </div>
         </main>
         <footer class="footer">
-          <h2>by kodi</h2>
+          <h2></h2>By kodi</h2>
         </footer>
 
         <script src="news.js"></script>
@@ -99,7 +99,7 @@
                     });
                 } catch (error) {
                     console.error('Framer Motion animation failed:', error);
-                    // Fallback if Framer Motion animation fails
+                    // 如果 Framer Motion 动画失败
                     loadingOverlay.style.transition = 'opacity 0.5s ease 0.3s';
                     loadingOverlay.style.opacity = '0';
                     setTimeout(() => {
@@ -107,7 +107,7 @@
                     }, 800); // 500ms for fade + 300ms delay
                 }
             } else {
-                // Fallback if Framer Motion fails to load
+                // 如果 Framer Motion 加载失败
                 lines[0].style.transition = `height 0.2s ease-out 0.1s`;
                 lines[0].style.height = '33%';
                 setTimeout(() => {

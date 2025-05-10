@@ -261,13 +261,13 @@ input[type="submit"],
 
 /* Footer Styles (Optional - Add if needed) */
 .footer {
-    background-color: var(--footer-bg-light);
-    color: var(--footer-text-light);
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px; /* Space above footer */
+    background-color: #1a1a1a;
+    margin-top: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
 }
 
 /* Dark Theme Styles */
@@ -575,7 +575,7 @@ body.dark-theme .category-buttons button:hover {
     margin: 18px 12px 24px 12px;
     padding: 0 0 18px 0;
     width: 100%;
-    max-width: 370px;
+    max-width: 400px;
     min-height: 420px;
     transition: box-shadow 0.2s, transform 0.2s;
     cursor: pointer;
@@ -1848,4 +1848,7 @@ body.dark-theme .page-btn.active, body.dark-theme .page-btn:hover {
 }
 .main-left{
     width: 70%;
+}
+.footer-bottom{
+    margin-bottom: 100px;
 }
